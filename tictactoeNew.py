@@ -7,13 +7,13 @@
 # each game is stored as a sequence of 9 digits
 # for example 563789... means human puts O in pos 5,
 # computer puts X in position 6, etc
+# human goes first
  
 import turtle, time, random
 
 turtle.setup(width=500, height=0.5)
-turtle.speed(0)
 turtle.color("black","white")
-
+turtle.speed(0)
 xc=30
 yc=0
 restartbtnx=-230
@@ -35,12 +35,9 @@ def drawline(xstart,ystart,direction,mywidth,length):
     turtle.pendown()
     turtle.forward(length)
     
-#horizontal lines
 def drawfield():
  for i in range(2):
   drawline(xc-200,yc-100+i*100,0,7,300)
-
-#vertical lines
  for i in range(2):
   drawline(xc-100+i*100,yc-200,90,7,300)
 
@@ -63,7 +60,6 @@ def testrect(topleftx,toplefty,width,height,x,y):
             return True
     return False
 
-# use this for working out if a button has been clicked
 def testbuttonclick(x,y):
     if testrect(restartbtnx,restartbtny,200,100,x,y):
         playagain()
@@ -118,27 +114,21 @@ def screenclick(x,y):
           message("Draw")
           GameOver = True
 
-turtle.onscreenclick(screenclick)
-
-
 def StartGame():
   turtle.tracer(False)
   turtle.clear()
   drawfield()
-  drawbutton(restartbtnx,restartbtny,"Restart")
+  drawbutton(restartbtnx,restartbtny,"Play Again")
   drawbutton(exitbtnx,exitbtny,"Exit")
   turtle.shapesize(3,3,8)
   turtle.penup()
   turtle.hideturtle()
   turtle.tracer(True)
 
-StartGame() 
-
 def endgame(mymessage):
     global GameOver
     GameOver = True
     message(mymessage)
-
 
 #draw next move on square 1,2,...,9
 def choose(i):
@@ -207,4 +197,8 @@ def testwin(mymoves):
     if check(3,5,7,mymoves): return True
     else:
         return False
+
+# program starts here
+turtle.onscreenclick(screenclick)
+StartGame() 
 
