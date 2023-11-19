@@ -11,14 +11,14 @@
  
 import turtle, time, random
 
-turtle.setup(width=500, height=0.5)
+turtle.setup(width=500, height=800)
 turtle.color("black","white")
 turtle.speed(0)
-xc=30
+xc=40
 yc=0
-restartbtnx=-230
+restartbtnx=-200
 restartbtny=-260
-exitbtnx=-30
+exitbtnx=20
 exitbtny=-260
 lose = []
 moves = ""
@@ -118,6 +118,7 @@ def StartGame():
   turtle.tracer(False)
   turtle.clear()
   drawfield()
+  message("Human = Circle",y=350,size=20)
   drawbutton(restartbtnx,restartbtny,"Play Again")
   drawbutton(exitbtnx,exitbtny,"Exit")
   turtle.shapesize(3,3,8)
@@ -175,10 +176,11 @@ def docomputermove():
     computermove = False
     print("Moves = ", moves)
 
-def message(mystring,y=300):
+def message(mystring,y=300,size=40):
     turtle.hideturtle()
-    turtle.goto(-50,y)
-    turtle.write(mystring, font=("arial",40),align="center")
+    turtle.penup()
+    turtle.goto(0,y)
+    turtle.write(mystring, font=("arial",size),align="center")
 
 def check(a,b,c,mymoves):
     if (a in mymoves) and (b in mymoves) and (c in mymoves):
