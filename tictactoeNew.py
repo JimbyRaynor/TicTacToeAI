@@ -11,7 +11,7 @@
  
 import turtle, time, random
 
-turtle.setup(width=500, height=800)
+turtle.setup(width=500, height=700)
 turtle.color("black","white")
 turtle.speed(0)
 xc=40
@@ -119,12 +119,20 @@ def StartGame():
   turtle.clear()
   drawfield()
   message("Human = Circle",y=350,size=20)
+  message("Computer = Square",y=320,size=20)
+  message("Tap on any open cell to make your choice",y=290,size=14)
   drawbutton(restartbtnx,restartbtny,"Play Again")
   drawbutton(exitbtnx,exitbtny,"Exit")
   turtle.shapesize(3,3,8)
   turtle.penup()
   turtle.hideturtle()
   turtle.tracer(True)
+
+def message(mystring,y=140,size=40):
+    turtle.hideturtle()
+    turtle.penup()
+    turtle.goto(0,y)
+    turtle.write(mystring, font=("arial",size),align="center")
 
 def endgame(mymessage):
     global GameOver
@@ -175,13 +183,7 @@ def docomputermove():
     choose(x)
     computermove = False
     print("Moves = ", moves)
-
-def message(mystring,y=300,size=40):
-    turtle.hideturtle()
-    turtle.penup()
-    turtle.goto(0,y)
-    turtle.write(mystring, font=("arial",size),align="center")
-
+    
 def check(a,b,c,mymoves):
     if (a in mymoves) and (b in mymoves) and (c in mymoves):
         return True
